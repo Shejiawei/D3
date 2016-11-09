@@ -1,13 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>Document</title>
+<meta charset="utf-8">
+ <script src="https://d3js.org/d3.v4.min.js"></script>
+<title>Document</title>
 </head>
 <body>
-<svg height='500' width='500'>
-	<ellipse cx='250' cy='150' rx='100' ry='50'
-	style="fill:green;stroke:yellow;stroke-width:6" />
-</svg>
+<script type="text/javascript">
+var width = 1366;
+var height = 768;
+var ctrl=d3.select('body').append('svg').attr('width',width).attr("height",height);
+	d3.csv("./20151222.csv",function(data){
+		var ln = data.length;
+		console.log(data);
+ 	var maxy = d3.max(data,function(d){return d.StnPres});
+	 var lines = d3.line().x(function(d,i){return i*(width/ln);
+	 	}).y(function(d){return height-d.StnPres*(height/maxy)});
+	 ctrl.append("path").data([data]).attr("d",lines).attr("stroke","red").attr("fill","none");
+	}
+	)
+</script>
 </body>
 </html>
