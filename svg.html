@@ -15,7 +15,7 @@ var ctrl=d3.select("body").append("svg").attr("width",width).attr("height",heigh
 		console.log(data);
  	var maxy = d3.max(data,function(d){return d.StnPres});
 	 var lines = d3.line().x(function(d,i){return i*(width/ln);
-	 	}).y(function(d){return height-d.StnPres})
+	 	}).y(function(d){return height-d.StnPres});
 	 ctrl.append("path").data([data]).attr("d",lines).attr("stroke","red").attr("fill","none");
 	}
 	)
