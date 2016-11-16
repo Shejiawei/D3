@@ -3,7 +3,7 @@ function linetest()
 {
 var width = 1000;
 var height = 500;
-var ctrl=d3.select("body").append("svg").attr("width",width).attr("height",height);
+var ctrl=d3.select(".content").append("svg").attr("width",width).attr("height",height);
 	d3.csv("https://shejiawei.github.io/D3/20151222.csv",function(data){
 		var ln = data.length;
 		console.log(data);
