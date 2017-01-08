@@ -20,8 +20,8 @@ var ctrl=d3.select(".content").append("svg").attr("width",width).attr("height",h
 	}
 	)
 var scale = d3.scale.linear() 
-  .domain([0, 730]) 
-  .range([0, 1000]);
+  .domain([0, 720]) 
+  .range([0, width]);
 var axisX = d3.svg.axis()
       .scale(scale)
       .orient("bottom")
