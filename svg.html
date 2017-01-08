@@ -7,18 +7,23 @@
 </head>
 <body>
 <script type="text/javascript">
-var width = 500;
+var width = 1000;
 var height = 500;
-var ctrl=d3.select("body").append("svg").attr("width",width).attr("height",height);
-	d3.csv("./20151222.csv",function(data){
+var ctrl=d3.select(".content").append("svg").attr("width",width).attr("height",height);
+	d3.csv("https://shejiawei.github.io/D3/park.csv",function(data){
 		var ln = data.length;
 		console.log(data);
- 	var maxy = 1020
+ 	var maxy = 
 	 var lines = d3.line().x(function(d,i){return i*(width/ln);
-	 	}).y(function(d){return height*(1-d.StnPres/maxy)});
+	 	}).y(function(d){return height*(1-d.efficiency/maxy)});
 	 ctrl.append("path").data([data]).attr("d",lines).attr("stroke","red").attr("fill","none");
 	}
 	)
+var scaleX = d3.scale.linear().range([0,width]).domain([0,730])
+var axisX = d3.svg.axis()
+      .scale(scaleX)
+      .ticks(30)
+
 </script>
 </body>
 </html>
