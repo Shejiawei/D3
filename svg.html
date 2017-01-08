@@ -19,10 +19,7 @@ var ctrl=d3.select(".content").append("svg").attr("width",width).attr("height",h
 	 ctrl.append("path").data([data]).attr("d",lines).attr("stroke","red").attr("fill","none");
 	}
 	)
-var scaleX = d3.scale.linear().range([0,width]).domain([0,730])
-var axisX = d3.svg.axis()
-      .scale(scaleX)
-      .ticks(30)
+
 
 </script>
 </body>
