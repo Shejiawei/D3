@@ -20,10 +20,11 @@ var ctrl=d3.select(".content").append("svg").attr("width",width).attr("height",h
 	}
 	)
 var scale = d3.scale.linear() 
-  .domain([0, 50]) //尺度最小值、最大值 
-  .range([10, 160]);
+  .domain([0, 730]) 
+  .range([0, 1000]);
 var axisX = d3.svg.axis()
       .scale(scale)
+      .orient("bottom")
       .ticks(30);
 ctrl.append("svg:g").attr("class","x axis").call(axisX);
 </script>
