@@ -20,12 +20,12 @@ var ctrl=d3.select(".content").append("svg").attr("width",width).attr("height",h
 	}
 	)
 var scale = d3.scale.linear() 
-  .domain([0, 720]) 
+  .domain([0, 12]) 
   .range([0, width]);
 var axisX = d3.svg.axis()
       .scale(scale)
       .orient("bottom")
-      .ticks(30);
+      .ticks(4);
 ctrl.append("svg:g").attr("class","x axis").call(axisX);
 </script>
 </body>
