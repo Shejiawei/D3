@@ -13,14 +13,84 @@ var ctrl=d3.select(".content").append("svg").attr("width",width).attr("height",h
 	d3.csv("https://shejiawei.github.io/D3/park.csv",function(data){
 		var ln = data.length;
 		console.log(data);
- 	var maxy = 
+ 	var maxy = 0.7
 	 var lines = d3.line().x(function(d,i){return i*(width/ln);
 	 	}).y(function(d){return height*(1-d.efficiency/maxy)});
 	 ctrl.append("path").data([data]).attr("d",lines).attr("stroke","red").attr("fill","none");
 	}
 	)
-
-
+var scale = d3.scale.linear() 
+	  .domain([0, 730])  
+  .range(0, 1000]); 
+var axisX = d3.svg.axis()
+      .scale(scale)
+      .ticks(30);
+ctrl.append("svg:g").attr("class","x axis").call(axisX);
 </script>
 </body>
 </html>
+var data = 
+[
+　{number: 11, color: "#3DB680"},
+　{number: 19, color: "#C0D860"},
+　{number: 31, color: "#F3C759"}, 
+　{number: 37, color: "#E6855E"},
+　{number: 41, color: "#CE579B"},
+　{number: 47, color: "#8B90BE"},
+];
+
+
+var svg = d3
+  .select("body") //指定 body 為當前選擇物件
+  .append("svg") //建立 (插入) 一個 svg 標籤
+  .attr("width", "300")
+  .attr("height", "300");
+
+var group = svg
+  .selectAll("g") // 選擇 svg 標籤下所有 g
+  .data(data) // 綁資料
+  .enter() // 逐筆跑
+  .append("g"); // 每一筆建立 (插入) 一個 g 標籤
+
+group
+  .append("rect") // 每個群組下插入一個方塊
+  .attr("x", "10")
+  .attr("y", function(d, i) {
+    return i * 21;
+  })
+  .attr("width", function(d) {
+    return d.number * 3 + 'px';
+  })
+  .attr("height", "20")
+  .attr("fill", function(d) {
+    return d.color;
+  });
+
+group
+  .append("text") // 每個群組下插入一個文字
+  .attr("text-anchor", "end")
+  .attr("fill", "white")
+  .attr("x", function(d) {
+    return d.number * 3 - 2 + 10;
+  })
+  .attr("y", function(d, i) {
+    return (i + 1) * 20;
+  })
+  .text(function(d) {
+    return d.number;
+  });
+
+// =====
+
+var scale = d3.scale.linear() // 定義線性尺度
+  .domain([0, 50]) //尺度最小值、最大值 
+  .range([10, 160]); //尺度擺放位置，起點和終點
+
+//Axis
+var x_axis = d3.svg.axis().scale(scale) //定義軸線，並套用尺度
+  .orient("bottom") //刻度在線條的下面
+  .ticks(6) //幾個刻度？
+
+svg.append('g').attr('class', 'axis') //增加一個群組並加上class="axis"
+  .attr('transform', 'translate(0, ' + 130 + ')') //設定位移，g 不能用 x,y 屬性
+  .call(x_axis); //顯示軸線
